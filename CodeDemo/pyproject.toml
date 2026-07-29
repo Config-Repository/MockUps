@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "codedemo"
+version = "0.1.0"
+description = "Code Demo"
+authors = ["Kenneth Wilson"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.scripts]
+codedemo = "codedemo.main:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
