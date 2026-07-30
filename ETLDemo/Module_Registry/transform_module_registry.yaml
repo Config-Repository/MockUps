@@ -1,0 +1,14 @@
+clean_headers:
+  module: transform_module.clean_headers:CleanHeadersModule
+
+remove_spaces:
+  module: transform_module.remove_spaces:RemoveSpacesModule
+
+apply_column_mapping:
+  module: transform_module.apply_column_mapping:ApplyColumnMappingModule
+
+add_file_year_month:
+  module: transform_module.add_file_year_month:AddFileYearMonthModule
+
+filter_rows:
+  module: transform_module.filter_rows:FilterRowsModule

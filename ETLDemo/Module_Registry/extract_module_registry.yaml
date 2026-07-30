@@ -1,0 +1,5 @@
+read_excel:
+  module: extract_module.read_excel:ReadExcelModule
+
+read_text:
+  module: extract_module.read_text:ReadTextModule

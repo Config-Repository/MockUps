@@ -1,0 +1,5 @@
+write_to_csv:
+  module: load_module.write_to_csv:WriteToCsvModule
+
+bcp_data_loader:
+  module: load_module.bcp_data_loader:BcpDataLoaderModule

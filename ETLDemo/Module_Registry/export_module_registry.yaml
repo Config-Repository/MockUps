@@ -1,0 +1,2 @@
+bcp_data_exporter:
+  module: export_module.bcp_data_exporter:BcpDataExporterModule
