@@ -1,0 +1,22 @@
+name: testfile_export
+
+export_data_flag: Y
+
+server_connection:
+  server: test_server
+  database: ETL
+  schema: tmp
+  table: testfile_export_table
+
+export:
+  modules:
+    - name: bcp_data_exporter
+      rules:
+        datafile: Data/testfile_export/testfile_export.txt
+
+        delimiter: "|"
+        rowterminator: "\n"
+        encoding: 65001
+        packetsize: 65535
+        data_exporter_template: Scripts/export/bcp_data_exporter_template.bat
+        data_exporter: Scripts/export/bcp_data_exporter.bat

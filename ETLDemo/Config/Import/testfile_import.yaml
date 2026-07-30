@@ -1,0 +1,53 @@
+name: testfile_import
+
+load_file_flag: Y
+
+target_connection:
+  server: test_server
+  database: ETL
+  schema: tmp
+  table: testfile_import_table
+
+source:
+  type: text
+  file: 'C:\GenericETL\Data\testfile_import\testfile_import.txt'
+  delimiter: '\t'
+  skiprows: 0
+
+extract:
+  modules:
+    - name: read_text
+
+transform:
+  modules:
+    - name: apply_column_mapping
+      rules:
+        columns:
+          - Col1
+          - Col2
+          - Col3
+    - name: add_file_year_month
+    - name: clean_headers
+    - name: remove_spaces
+      rules:
+        columns: all
+
+staging:
+  output_file: Data/testfile_import/testfile_import.csv
+
+load:
+  modules:
+    - name: write_to_csv
+    - name: bcp_data_loader
+      rules:
+        data_loader_template: Scripts/load/bcp_data_loader_template.bat
+        data_loader: Scripts/load/bcp_data_loader.bat
+
+        datafile: 'C:\GenericETL\Data\testfile_import\testfile_import.csv'
+        formatfile: 'C:\GenericETL\Destination_Format\testfile_import.fmt'
+
+        delimiter: '|'
+        encoding: 65001 # 65001 is UTF-8 encoding
+        batchsize: 10000 # 10000 rows per batch transaction
+        packetsize: 65535 # ~64KB per network request
+        firstrow: 2
