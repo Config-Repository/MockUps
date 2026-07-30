@@ -1,10 +1,25 @@
 flowchart LR
-    A["YAML Configuration"] --> B["ETL Runner"]
-    B --> C["Extract Data"]
-    C --> D["Transform Data"]
-    D --> E["Load or Export Data"]
-    E --> F["Database or Output File"]
 
-    A -. defines modules and rules .-> C
-    A -. defines modules and rules .-> D
-    A -. defines destination .-> E
+    A["YAML Configuration"]
+    B["ETL Runner<br/>(Orchestrator)"]
+
+    subgraph PIPELINE["ETL Processing Pipeline"]
+        C["Extract Data"]
+        D["Transform Data"]
+        E["Load / Export Data"]
+    end
+
+    F["Database / Output File"]
+
+    A -->|Defines source,<br/>modules & rules| B
+
+    B -->|Executes| C
+    C --> D
+    D --> E
+    E --> F
+
+    A -. Configures .-> C
+    A -. Configures .-> D
+    A -. Configures .-> E
+
+    B -. Loads Module Registries .-> C
