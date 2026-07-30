@@ -1,0 +1,10 @@
+flowchart LR
+    A["YAML Configuration"] --> B["ETL Runner"]
+    B --> C["Extract Data"]
+    C --> D["Transform Data"]
+    D --> E["Load or Export Data"]
+    E --> F["Database or Output File"]
+
+    A -. defines modules and rules .-> C
+    A -. defines modules and rules .-> D
+    A -. defines destination .-> E
